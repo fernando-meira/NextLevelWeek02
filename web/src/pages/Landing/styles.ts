@@ -58,6 +58,51 @@ export const PageLandingContent = styled.div`
       margin-left: 0.8rem;
     }
   }
+
+  @media (min-width: 1100px) {
+    max-width: 1100px;
+
+    display: grid;
+    grid-template-rows: 350px 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-areas:
+      'logo hero hero'
+      'buttons buttons total';
+
+    .logo-container {
+      margin: 0;
+      align-self: center;
+
+      grid-area: logo;
+
+      text-align: left;
+
+      img {
+        height: 100%;
+      }
+
+      h2 {
+        font-size: 3.6rem;
+        text-align: initial;
+      }
+    }
+
+    .hero-image {
+      grid-area: hero;
+      justify-self: end;
+    }
+
+    .buttons-container {
+      grid-area: buttons;
+
+      justify-content: flex-start;
+    }
+
+    span {
+      grid-area: total;
+      justify-self: end;
+    }
+  }
 `;
 
 export const Link = styled(Links)`
@@ -102,4 +147,13 @@ export const Link = styled(Links)`
         background: ${colors.secundaryDark};
       }
     `}
+
+    @media (min-width: 1100px) {
+    width: 30rem;
+    font-size: 2.4rem;
+
+    > img {
+      margin-right: 2.4rem;
+    }
+  }
 `;

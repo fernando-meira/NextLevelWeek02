@@ -34,8 +34,8 @@ const Landing = () => {
             </Link>
 
             <Link to="/" className="give-classes">
-              <img src={giveClasses} alt="Estudar" />
-              Estudar
+              <img src={giveClasses} alt="Dar aulas" />
+              Dar aulas
             </Link>
           </div>
 
