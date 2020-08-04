@@ -1,10 +1,14 @@
 import React from 'react';
 
-function App: React.FC() {
+import Global from './themes/styles/global';
+import Routes from './routes';
+
+function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <>
+      <Global />
+      <Routes />
+    </>
   );
 }
 
