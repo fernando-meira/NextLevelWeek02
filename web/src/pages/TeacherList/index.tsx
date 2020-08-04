@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { PageHeader } from '../../components';
+
 import { Container } from './styles';
 
 const TeacherList = () => {
   return (
     <Container>
-      <h1>Listagem de professores</h1>
+      <PageHeader title={'Estes são os proffys disponíveis'} />
     </Container>
   );
 };

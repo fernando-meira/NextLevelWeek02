@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { PageHeader } from '../../components';
+
 import { Container } from './styles';
 
 const TeacherForm = () => {
   return (
     <Container>
-      <h1>Hello Rocketseat</h1>
+      <PageHeader title={'Que bom que você quer dar aulas.'} />
     </Container>
   );
 };
