@@ -31,6 +31,7 @@ export default createGlobalStyle`
 
   body, input, button, textarea {
     font: 500 1.6rem Poppins;
+    color: ${colors.textBase}
   }
 
   h1,
