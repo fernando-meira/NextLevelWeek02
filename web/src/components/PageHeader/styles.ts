@@ -46,4 +46,28 @@ export const Container = styled.header`
       color: ${colors.titleInPrimary};
     }
   }
+
+  @media (min-width: 700px) {
+    height: 340px;
+
+    .top-bar-container {
+      max-width: 1100px;
+    }
+
+    .header-content {
+      margin: 0 auto;
+      max-width: 740px;
+      padding-bottom: 48px;
+
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      strong {
+        max-width: 350px;
+      }
+    }
+  }
 `;
