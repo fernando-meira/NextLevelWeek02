@@ -1,4 +1,5 @@
+import Input from './Input';
 import PageHeader from './PageHeader';
 import TeacherItem from './TeacherItem';
 
-export { PageHeader, TeacherItem };
+export { Input, PageHeader, TeacherItem };

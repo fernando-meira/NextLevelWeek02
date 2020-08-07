@@ -45,6 +45,15 @@ export const Container = styled.header`
       font: 700 3.6rem Archivo;
       color: ${colors.titleInPrimary};
     }
+
+    > p {
+      max-width: 30rem;
+      margin-top: 2.4rem;
+
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+      color: ${colors.textInPrimary};
+    }
   }
 
   @media (min-width: 700px) {
