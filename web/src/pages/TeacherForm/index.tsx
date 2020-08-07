@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 
-import { PageHeader, Input } from '../../components';
+import { PageHeader, Input, TextArea } from '../../components';
 
 import { Container, Main } from './styles';
 
@@ -20,6 +20,7 @@ const TeacherForm = () => {
           <Input name="name" label="Nome Completo" />
           <Input name="avatar" label="Avatar" />
           <Input name="whatsapp" label="whatsapp" />
+          <TextArea name="bio" label="Biografia" />
         </fieldset>
 
         <fieldset>

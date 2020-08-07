@@ -25,6 +25,10 @@ export const Main = styled.main`
     border: 0;
     padding: 0 2.4rem;
 
+    div + div {
+      margin-top: 2.4rem;
+    }
+
     label {
       color: ${colors.textComponent};
     }

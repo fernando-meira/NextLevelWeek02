@@ -13,22 +13,24 @@ export const Container = styled.div`
     font-size: 1.4rem;
   }
 
-  > input {
+  > textarea {
     outline: 0;
     width: 100%;
-    height: 5.6rem;
-    padding: 0 1.6rem;
+    height: 16rem;
     margin-top: 0.8rem;
+    min-height: 5.6rem;
     border-radius: 0.8rem;
+    padding: 1.2rem 1.6rem;
     border: 1px solid ${colors.inputBackground};
 
+    resize: vertical;
     font: 1.6rem Archivo;
     background-color: ${colors.inputBackground};
   }
 
   :focus-within::after {
     content: '';
-    bottom: 0;
+    bottom: 7px;
     left: 1.6rem;
     right: 1.6rem;
     position: absolute;
