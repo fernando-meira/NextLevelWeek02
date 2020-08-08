@@ -17,13 +17,13 @@ export const Main = styled.main`
   overflow: hidden;
   padding-top: 6.4rem;
   border-radius: 0.8rem;
-  margin: -3.2rem auto 3.2rem;
+  margin: -1.2rem auto 3.2rem;
 
   background: ${colors.boxBase};
 
   fieldset {
     border: 0;
-    padding: 0 2.4rem;
+    padding: 0 6.4rem;
 
     div + div {
       margin-top: 2.4rem;
@@ -45,6 +45,37 @@ export const Main = styled.main`
 
       font: 700 2.4rem Archivo;
       color: ${colors.textTitle};
+
+      > button {
+        border: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: none;
+        transition: 0.4s;
+        color: ${colors.primary};
+        font: 700 1.6rem Archivo;
+
+        :hover {
+          color: ${colors.primaryDark};
+
+          svg {
+            background: none;
+            color: ${colors.primaryDark};
+          }
+        }
+
+        svg {
+          border-radius: 50%;
+          margin-right: 0.8rem;
+
+          transition: 0.4s;
+          color: ${colors.buttonText};
+          background: ${colors.primary};
+        }
+      }
     }
 
     & + fieldset {
@@ -97,8 +128,20 @@ export const Main = styled.main`
   }
 
   @media (min-width: 700px) {
+    margin: -3.2rem auto 3.2rem;
+
     fieldset {
       padding: 0 6.4rem;
+
+      .schedule-item {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        column-gap: 1.6rem;
+
+        > div {
+          margin-top: 0;
+        }
+      }
     }
 
     footer {
