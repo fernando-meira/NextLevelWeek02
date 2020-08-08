@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import api from '../../services/api';
 
 import { logo, landing } from '../../themes/assets/images';
 
@@ -11,6 +13,22 @@ import {
 import { Container, PageLanding, PageLandingContent, Link } from './styles';
 
 const Landing = () => {
+  const [totalConnections, setTotalConnections] = useState({ total: 0 });
+
+  useEffect(() => {
+    async function fetchTotalConnections() {
+      try {
+        const { data } = await api.get('/connections');
+
+        setTotalConnections(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchTotalConnections();
+  }, []);
+
   return (
     <Container>
       <PageLanding>
@@ -40,7 +58,7 @@ const Landing = () => {
           </div>
 
           <span className="total-connections">
-            Total de 200 conexões já realizadas
+            Total de {totalConnections.total} conexões realizadas
             <img src={purpleHeartIcon} alt="Coração roxo" />
           </span>
         </PageLandingContent>
