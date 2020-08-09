@@ -46,6 +46,8 @@ const TeacherForm = () => {
       try {
         const { data } = await api.post('classes', params);
 
+        console.log(data);
+
         alert('Cadastro realizado com sucesso!');
 
         history.push('/');

@@ -1,43 +1,63 @@
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 
+import api from '../../services/api';
 import { Container, Footer } from './styles';
 
-const TeacherItem = () => {
+export interface Teacher {
+  id: number;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  async function handleAddConnections() {
+    try {
+      const { data } = await api.post('connections', {
+        user_id: teacher.id,
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Container>
       <header>
-        <img
-          src="https://avatars1.githubusercontent.com/u/52580705?s=460&u=507ae3538daf3d5968d1fdbfe811350338acbb41&v=4"
-          alt="Fernando Meira"
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
 
         <div>
-          <strong>Fernando Meira</strong>
+          <strong>{teacher.name}</strong>
 
-          <span>Cálculo</span>
+          <span>{teacher.subject}</span>
         </div>
       </header>
 
-      <p>
-        Mussum Ipsum, cacilds vidis litro abertis.
-        <br /> <br />
-        Manduma pindureta quium dia nois paga. Posuere libero varius. Nullam a
-        nisl ut ante blandit hendrerit. Aenean sit amet nisi. Cevadis im ampola
-        pa arma uma pindureta. Copo furadis é disculpa de bebadis, arcu quam
-        euismod magna.
-      </p>
+      <p>{teacher.bio}</p>
 
       <Footer>
         <p>
           Preço/Hora
-          <strong>RS 80,00</strong>
+          <strong>{`R$${teacher.cost}`}</strong>
         </p>
 
-        <button type="button">
+        <a
+          href={`https://wa.me/${teacher.whatsapp}?text=Olá!%20Tudo%20bem?`}
+          target="blank"
+          onClick={handleAddConnections}
+        >
           <FaWhatsapp />
           Entrar em contato
-        </button>
+        </a>
       </Footer>
     </Container>
   );

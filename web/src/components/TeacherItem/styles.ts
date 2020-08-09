@@ -80,7 +80,7 @@ export const Footer = styled.footer`
     }
   }
 
-  button {
+  a {
     border: 0;
     width: 20rem;
     height: 5.6rem;
@@ -91,6 +91,7 @@ export const Footer = styled.footer`
     justify-content: space-evenly;
 
     transition: 0.4s;
+    text-decoration: none;
     font: 700 1.4rem Archivo;
     color: ${colors.buttonText};
     background: ${colors.secundary};

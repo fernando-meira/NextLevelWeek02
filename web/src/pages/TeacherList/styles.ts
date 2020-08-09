@@ -20,7 +20,35 @@ export const Form = styled.form`
 
     display: grid;
     column-gap: 16px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 2fr 1fr 1fr;
+
+    button {
+      border: 0;
+      height: 5.6rem;
+      margin-top: 3.2rem;
+      border-radius: 0.8rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transition: 0.4s;
+      font: 700 1.4rem Archivo;
+      color: ${colors.buttonText};
+      background: ${colors.secundary};
+
+      :hover {
+        background: ${colors.secundaryDark};
+      }
+
+      svg {
+        font-size: 2rem;
+        margin-left: 1rem;
+
+        background: transparent;
+        color: ${colors.buttonText};
+      }
+    }
   }
 `;
 

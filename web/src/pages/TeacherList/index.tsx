@@ -1,17 +1,43 @@
-import React from 'react';
+import React, { useState, FormEvent } from 'react';
+import { FiSearch } from 'react-icons/fi';
 
+import api from '../../services/api';
 import { PageHeader, TeacherItem, Input, Select } from '../../components';
+import { Teacher } from '../../components/TeacherItem';
 
 import { Container, Form, Main } from './styles';
 
 const TeacherList = () => {
+  const [time, setTime] = useState('');
+  const [subject, setSubject] = useState('');
+  const [weekDay, setWeekDay] = useState('');
+  const [teachers, setTeachers] = useState([]);
+
+  async function searchTeachers(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const dataSearch = { subject, week_day: weekDay, time };
+
+    try {
+      const { data } = await api.get('classes', {
+        params: dataSearch,
+      });
+
+      setTeachers(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Container>
       <PageHeader title={'Que bom que você quer dar aulas.'}>
-        <Form>
+        <Form onSubmit={searchTeachers}>
           <Select
             name="subject"
             label="Matéria"
+            value={subject}
+            onChange={e => setSubject(e.target.value)}
             options={[
               { value: 'Português', label: 'Português' },
               { value: 'Matemática', label: 'Matemática' },
@@ -28,6 +54,8 @@ const TeacherList = () => {
           <Select
             name="weak_day"
             label="Dia da semana"
+            value={weekDay}
+            onChange={e => setWeekDay(e.target.value)}
             options={[
               { value: '0', label: 'Domingo' },
               { value: '1', label: 'Segunda-feira' },
@@ -38,12 +66,25 @@ const TeacherList = () => {
               { value: '6', label: 'Sábado' },
             ]}
           />
-          <Input type="time" label="Hora" name="time" />
+          <Input
+            type="time"
+            label="Hora"
+            name="time"
+            value={time}
+            onChange={e => setTime(e.target.value)}
+          />
+
+          <button type="submit">
+            Buscar
+            <FiSearch />
+          </button>
         </Form>
       </PageHeader>
 
       <Main>
-        <TeacherItem />
+        {teachers.map((teacher: Teacher) => (
+          <TeacherItem key={teacher.id} teacher={teacher} />
+        ))}
       </Main>
     </Container>
   );
