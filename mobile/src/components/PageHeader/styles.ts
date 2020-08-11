@@ -20,3 +20,9 @@ export const Title = styled.Text`
   line-height: 32px;
   font-family: "Archivo_700Bold";
 `;
+
+export const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
