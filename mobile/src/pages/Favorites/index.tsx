@@ -1,14 +1,20 @@
 import React from "react";
-import { Text } from "react-native";
 
-import { PageHeader } from "../../components";
+import { PageHeader, TeacherItem } from "../../components";
 
-import { Container } from "./styles";
+import { Container, TeacherListContainer } from "./styles";
 
 const Favorites = () => {
   return (
     <Container>
       <PageHeader title="Meus proffys favoritos" />
+
+      <TeacherListContainer>
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+      </TeacherListContainer>
     </Container>
   );
 };

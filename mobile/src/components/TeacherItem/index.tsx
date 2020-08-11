@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
 
 import heartOutlineIcon from "../../assets/images/icons/heart-outline.png";
 import unfavoriteIcon from "../../assets/images/icons/unfavorite.png";
@@ -9,11 +8,12 @@ import whatsappIcon from "../../assets/images/icons/whatsapp.png";
 import {
   Bio,
   Name,
-  Avatar,
   Price,
+  Avatar,
   Footer,
   Profile,
   Subject,
+  Favorited,
   Container,
   PriceValue,
   ProfileInfo,
@@ -24,6 +24,8 @@ import {
 } from "./styles";
 
 const TeacherItem = () => {
+  const [favorite, setFavorite] = useState(true);
+
   return (
     <Container>
       <Profile>
@@ -50,9 +52,15 @@ const TeacherItem = () => {
         </Price>
 
         <ButtonContainer>
-          <FavoriteButton>
-            <Image source={heartOutlineIcon} />
-          </FavoriteButton>
+          {favorite ? (
+            <Favorited>
+              <Image source={unfavoriteIcon} />
+            </Favorited>
+          ) : (
+            <FavoriteButton>
+              <Image source={heartOutlineIcon} />
+            </FavoriteButton>
+          )}
 
           <ContactButton>
             <Image source={whatsappIcon} />

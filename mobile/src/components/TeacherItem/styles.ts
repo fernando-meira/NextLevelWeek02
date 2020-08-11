@@ -93,6 +93,18 @@ export const FavoriteButton = styled(RectButton)`
   background-color: #8257e5;
 `;
 
+export const Favorited = styled(RectButton)`
+  width: 56px;
+  height: 56px;
+  margin-right: 8px;
+  border-radius: 8px;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #e33d3d;
+`;
+
 export const ContactButton = styled(RectButton)`
   margin-right: 8px;
   border-radius: 8px;
