@@ -1,13 +1,20 @@
 import React from "react";
 
-import { PageHeader } from "../../components";
+import { PageHeader, TeacherItem } from "../../components";
 
-import { Container } from "./styles";
+import { Container, TeacherListContainer } from "./styles";
 
 const TeacherList = () => {
   return (
     <Container>
       <PageHeader title="Proffs disponíveis" />
+
+      <TeacherListContainer>
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+      </TeacherListContainer>
     </Container>
   );
 };
