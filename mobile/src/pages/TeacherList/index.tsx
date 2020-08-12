@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import { BorderlessButton } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-community/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 import api from "../../services/api";
 import { Teacher } from "../../components/TeacherItem";
@@ -30,7 +31,7 @@ const TeacherList = () => {
   const [subject, setSubject] = useState("");
   const [teachers, setTeachers] = useState([]);
 
-  useEffect(() => {
+  const loadFavorites = () => {
     AsyncStorage.getItem("favorites").then((response) => {
       if (response) {
         const favoritedTeachers = JSON.parse(response);
@@ -43,7 +44,7 @@ const TeacherList = () => {
         setFavorites(favoritedTeachersIds);
       }
     });
-  }, []);
+  };
 
   const handleToggleFiltersVisibility = () => {
     setIsFilteresVisible(!isFilteresVisible);
@@ -58,7 +59,15 @@ const TeacherList = () => {
 
     setTeachers(data);
     setIsFilteresVisible(false);
+
+    loadFavorites();
   };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      loadFavorites();
+    }, [])
+  );
 
   return (
     <Container>

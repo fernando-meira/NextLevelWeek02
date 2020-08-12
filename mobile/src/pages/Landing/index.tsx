@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Image, Text } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
+import { useFocusEffect } from "@react-navigation/native";
 
 import api from "../../services/api";
 
@@ -14,21 +15,17 @@ import heartIcon from "../../assets/images/icons/heart.png";
 const Landing = () => {
   const { navigate } = useNavigation();
 
-  const [connections, setConnections] = useState(0);
+  const [connections, setConnections] = useState<number>(0);
 
-  useEffect(() => {
-    async function fetchConnections() {
-      try {
-        const { data } = await api.get("connections");
+  async function fetchConnections() {
+    try {
+      const { data } = await api.get("connections");
 
-        setConnections(data);
-      } catch (error) {
-        console.log(error);
-      }
+      setConnections(data.total);
+    } catch (error) {
+      console.log(error);
     }
-
-    fetchConnections();
-  }, []);
+  }
 
   const handleNavigateToGiveClassesPage = () => {
     navigate("GiveClasses");
@@ -37,6 +34,12 @@ const Landing = () => {
   const handleNavigateToStudyPages = () => {
     navigate("Study");
   };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchConnections();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
@@ -68,8 +71,7 @@ const Landing = () => {
       </View>
 
       <Text style={styles.totalConnections}>
-        Total de {connections.total} conexões realizadas{" "}
-        <Image source={heartIcon} />
+        Total de {connections} conexões realizadas <Image source={heartIcon} />
       </Text>
     </View>
   );

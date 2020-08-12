@@ -64,20 +64,23 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, favorited }) => {
     let favoritesArray = [];
 
     if (favorites) {
-      const favoritesArray = JSON.parse(favorites);
+      favoritesArray = JSON.parse(favorites);
     }
 
     if (isFavorited) {
-      const favoriteIndex = favoritesArray.findIndex((teacherItem: Teacher) => {
-        return teacherItem.id === teacher.id;
-      });
+      const favoriteIndex = favoritesArray.findIndex(
+        (teacherItem: Teacher) => teacherItem.id === teacher.id
+      );
 
       favoritesArray.splice(favoriteIndex, 1);
+
       setIsFavorited(false);
     } else {
       favoritesArray.push(teacher);
+
       setIsFavorited(true);
     }
+
     await AsyncStorage.setItem("favorites", JSON.stringify(favoritesArray));
   };
 
