@@ -18,12 +18,7 @@ export const Profile = styled.View`
   align-items: center;
 `;
 
-export const Avatar = styled.Image.attrs({
-  source: {
-    uri:
-      "https://avatars1.githubusercontent.com/u/52580705?s=460&u=507ae3538daf3d5968d1fdbfe811350338acbb41&v=4",
-  },
-})`
+export const Avatar = styled.Image`
   width: 64px;
   height: 64px;
   border-radius: 32px;
@@ -36,6 +31,8 @@ export const ProfileInfo = styled.View`
 `;
 
 export const Name = styled.Text`
+  max-width: 90%;
+
   color: #32264d;
   font-size: 20px;
   font-family: "Archivo_700Bold";

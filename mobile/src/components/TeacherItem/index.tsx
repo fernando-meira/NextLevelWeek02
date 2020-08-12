@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Image } from "react-native";
+import { Image, Linking } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
+
+import api from "../../services/api";
 
 import heartOutlineIcon from "../../assets/images/icons/heart-outline.png";
 import unfavoriteIcon from "../../assets/images/icons/unfavorite.png";
@@ -23,46 +26,96 @@ import {
   ContactButtonText,
 } from "./styles";
 
-const TeacherItem = () => {
-  const [favorite, setFavorite] = useState(true);
+export interface Teacher {
+  avatar: string;
+  bio: string;
+  cost: number;
+  id: number;
+  name: string;
+  subject: string;
+  user_id: number;
+  whatsapp: string;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher;
+  favorited: boolean;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher, favorited }) => {
+  const [isFavorited, setIsFavorited] = useState(favorited);
+  const { name, avatar, subject, bio, cost, whatsapp, id } = teacher;
+
+  const handleLinkToWhatsApp = async () => {
+    Linking.openURL(`whatsapp://send?text=${whatsapp}`);
+
+    try {
+      const { data } = await api.post("connections", { user_id: id });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleToggleFavorite = async () => {
+    const favorites = await AsyncStorage.getItem("favorites");
+
+    let favoritesArray = [];
+
+    if (favorites) {
+      const favoritesArray = JSON.parse(favorites);
+    }
+
+    if (isFavorited) {
+      const favoriteIndex = favoritesArray.findIndex((teacherItem: Teacher) => {
+        return teacherItem.id === teacher.id;
+      });
+
+      favoritesArray.splice(favoriteIndex, 1);
+      setIsFavorited(false);
+    } else {
+      favoritesArray.push(teacher);
+      setIsFavorited(true);
+    }
+    await AsyncStorage.setItem("favorites", JSON.stringify(favoritesArray));
+  };
 
   return (
     <Container>
       <Profile>
-        <Avatar />
+        <Avatar
+          source={{
+            uri: avatar,
+          }}
+        />
 
         <ProfileInfo>
-          <Name>Fernando Meira</Name>
+          <Name>{name}</Name>
 
-          <Subject>Cálculo</Subject>
+          <Subject>{subject}</Subject>
         </ProfileInfo>
       </Profile>
 
-      <Bio>
-        Mussum Ipsum, cacilds vidis litro abertis. Nullam volutpat risus nec leo
-        commodo, ut interdum diam laoreet. Sed non consequat odio. Interagi no
-        mé, cursus quis, vehicula ac nisi. Posuere libero varius. Nullam a nisl
-        ut ante blandit hendrerit. Aenean sit amet nisi. Quem num gosta di mé,
-        boa gentis num é.
-      </Bio>
+      <Bio>{bio}</Bio>
 
       <Footer>
         <Price>
-          Proço/hora <PriceValue>R$ 20,00 </PriceValue>{" "}
+          Proço/hora: <PriceValue>R${cost} </PriceValue>{" "}
         </Price>
 
         <ButtonContainer>
-          {favorite ? (
-            <Favorited>
+          {isFavorited ? (
+            <Favorited onPress={handleToggleFavorite}>
               <Image source={unfavoriteIcon} />
             </Favorited>
           ) : (
-            <FavoriteButton>
+            <FavoriteButton onPress={handleToggleFavorite}>
               <Image source={heartOutlineIcon} />
             </FavoriteButton>
           )}
 
-          <ContactButton>
+          <ContactButton onPress={handleLinkToWhatsApp}>
             <Image source={whatsappIcon} />
 
             <ContactButtonText>Entrar em contato</ContactButtonText>
