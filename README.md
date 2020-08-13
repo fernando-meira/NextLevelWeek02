@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/fernando-meira/todoList-WLS/blob/master/web/src/themes/assets/images/imgReadme.png" >
+  <img src="https://github.com/fernando-meira/NextLevelWeek02/blob/master/web/src/themes/assets/images/imgReadme.png" >
 </div>
 
 # Projeto
