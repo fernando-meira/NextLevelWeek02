@@ -10,10 +10,6 @@ Esse projeto foi ideializado pela [Rocketseat](https://rocketseat.com.br/) duran
 
 - Finalizado em: Uma semana(entre dia 03/10/20 á 09/10/20).
 
-## Demo
-
-- [ToDoWLS](https://todowls.netlify.app/)
-
 ### Melhorias
 
 - O projeto possui desafios como tela de login, integração da biblioteca Picker no Mobile, utilização de estados globais para melhor funcionamento, entre outras coisas.
